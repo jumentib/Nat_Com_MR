@@ -31,7 +31,7 @@ pos_max <- pos + 500000
 # cut GWAS
 PROT_cut <- PROT[PROT$POSI >= pos_min & PROT$POSI <= pos_max, ]
 
-# merge the 3 GWAS (BY POSITION of RSID)
+# merge the 3 GWAS (BY POSITION rather than RSID)
 tmp <- merge.data.frame(x = tmp_PROT, y = AAM)
 tmp <- merge.data.frame(x = tmp, y = ANM)
 

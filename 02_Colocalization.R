@@ -122,7 +122,7 @@ D2_outc$sdY <- "XXX" # (FROM GWAS STUDY : 1.3 for AAM and 4 for ANM)
 # check_dataset(D2_outc)
 # problem, some varbeta == 0
 # replace by mean
-D2_outc$varbeta[D2_outc$varbeta == 0] <- mean(D2_outc$varbeta)
+# D2_outc$varbeta[D2_outc$varbeta == 0] <- mean(D2_outc$varbeta)
 
 check_dataset(D2_outc)
 
