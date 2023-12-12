@@ -60,8 +60,8 @@ tmp <- merge.data.frame(expo_cut, outc, by.x = 3, by.y = 2)
 # rearrange data
 tmp <- tmp[, c(1:4, 7, 5, 8, 9, 10, 13, 16, 14)]
 
-colnames(tmp) <- c("rsid", "chr", "pos_hg38", "expo_eff", "expo_se", "expo_pv", "expo_N", "expo_maf",  
-                   "pos_hg37", "outc_eff", "outc_se", "outc_pv")
+colnames(tmp) <- c("rsid", "chr", "position", "expo_eff", "expo_se", "expo_pv", "expo_N", "expo_maf",  
+                   "outc_eff", "outc_se", "outc_pv")
 
 # varbeta = square(se)
 tmp$expo_varbeta <- (tmp$expo_se)^2
@@ -85,7 +85,7 @@ tmp[which.min(tmp$outc_pv), ]
 # levels(dat$variable) <- c(protI, "AAM")
 # 
 # # plot
-# ggplot(dat, aes(pos_hg38, -log10(value), color = lab, size = size)) +
+# ggplot(dat, aes(position, -log10(value), color = lab, size = size)) +
 #   geom_vline(xintercept = posI) +
 #   geom_point() +
 #   facet_wrap(~ variable, nrow = 2) +
@@ -104,7 +104,7 @@ D2_outc <- list()
 # expo
 D1_expo$type <- "quant"
 D1_expo$snp <- tmp$rsid
-D1_expo$position <- tmp$pos_hg38
+D1_expo$position <- tmp$position
 D1_expo$beta <- tmp$expo_eff
 D1_expo$varbeta <- tmp$expo_varbeta
 D1_expo$sdY <- 1 # (prot level are scale)
@@ -114,7 +114,7 @@ check_dataset(D1_expo)
 # expo
 D2_outc$type <- "quant"
 D2_outc$snp <- tmp$rsid
-D2_outc$position <- tmp$pos_hg38
+D2_outc$position <- tmp$position
 D2_outc$beta <- tmp$outc_eff
 D2_outc$varbeta <- tmp$outc_varbeta
 D2_outc$sdY <- "XXX" # (FROM GWAS STUDY : 1.3 for AAM and 4 for ANM)
@@ -144,7 +144,7 @@ tab_res$H4 <- as.numeric(tab_res$H4)
 
 # Susie PLUG-IN -------------------
 # need LD matrix for the set of tested RSID 
-# we estimated the LD matrix from 1000 genomes with plink
+# we estimated the LD matrix from 1000 genomes using plink
 ld <- "read ld files"
 
 # calculate Z-score for exposure data and outcome data
